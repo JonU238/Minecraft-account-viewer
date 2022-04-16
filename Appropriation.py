@@ -71,6 +71,21 @@ def side(arr,old):
         f=Image.fromarray(side)
         f.save("side.png")
 
+def upscale(file,x):
+    arr=np.array(Image.open(file))
+    shape=np.shape(arr)
+    print(shape[0]*x,shape[1]*x)
+    big=np.zeros((shape[0]*x,shape[1]*x,4),dtype=np.uint8)
+    for r in range(shape[0]):
+        for c in range(shape[1]):
+            big[(r*x):((r+1)*x),c*x:((c+1)*x)] = arr[r,c]
+    f=Image.fromarray(big)
+    f.save(file)
+
+    
+            
+
+
 
 Username = input("Who do you want to steal the skin of?: ")
 UUID = requests.request("GET","https://api.mojang.com/users/profiles/minecraft/"+Username)
@@ -83,7 +98,7 @@ print(skinlink)
 skin=urllib.request.urlretrieve(skinlink, "sample.png")
 im=Image.open("sample.png")
 im=np.array(im)
-print(type(np.shape(im)))
+print(np.shape(im))
 if(np.shape(im)[0]<60):
     old=True
 else:
@@ -91,6 +106,13 @@ else:
 side(im,old)
 front(im,old)
 face(im,old)
+
+upscale("face.png",10)
+upscale("sample.png",10)
+upscale("front.png",10)
+upscale("side.png",10)
+
+
 webbrowser.open("index.html")
 
 
