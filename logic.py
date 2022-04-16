@@ -82,7 +82,7 @@ def upscale(file,x):
     f=Image.fromarray(big)
     f.save(file)
 
-    
+
             
 
 
@@ -91,15 +91,19 @@ Username = input("Who do you want to steal the skin of?: ")
 UUID = requests.request("GET","https://api.mojang.com/users/profiles/minecraft/"+Username)
 UUID=UUID.json()["id"]
 print(UUID)
+
 skinlink = (requests.request("GET","https://sessionserver.mojang.com/session/minecraft/profile/"+UUID)).json()["properties"][0]["value"]
 skinlink=base64.b64decode(skinlink)
 skinlink=(skinlink.decode().split()[18]).split("\"")[1]
 print(skinlink)
+
 skin=urllib.request.urlretrieve(skinlink, "sample.png")
 im=Image.open("sample.png")
 im=np.array(im)
 print(np.shape(im))
+
 if(np.shape(im)[0]<60):
+
     old=True
 else:
     old=False
@@ -112,9 +116,11 @@ upscale("sample.png",10)
 upscale("front.png",10)
 upscale("side.png",10)
 
+name_history=requests.request("GET", "https://api.mojang.com/user/profiles/"+UUID+"/names").json()
+for i in name_history:
+    print(i["name"])
 
 webbrowser.open("index.html")
-
 
 
 '''
