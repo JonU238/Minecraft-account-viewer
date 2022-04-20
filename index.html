@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title>Apprropriation...</title>
+        <link rel="icon" href="favicon.ico">
+        <title>Skinfo</title>
         <link href="reset.css" rel="stylesheet" type="text/css">
         <style>
             #nav{
@@ -8,30 +9,34 @@
                 height: auto;
                 background-color: rgb(60, 60, 140);
                 font-size: 80px;
-                font-family: 'Gill Sans';
-            }
-            #pannel{
-                width: 50%;
-                height: auto;
-                padding: 15px;
-                background-color: rgb(60, 60, 110);
-                font-family: 'Gill Sans';
+                font-family: 'Gill Sans', 'Gill Sans MT','Trebuchet MS';
                 
             }
+
+            #pannel{
+                width: 45%;
+                height: auto;
+                background-color: rgb(60, 60, 110);
+                font-family: 'Gill Sans', 'Gill Sans MT','Trebuchet MS';
+                float: left;
+                margin: 1px;
+            }
+
             #lable{
                 background-color: rgb(60, 60, 140);
-                font-family: 'Gill Sans'; 
+                font-family: 'Gill Sans', 'Gill Sans MT','Trebuchet MS';
                 font-size: 40px;
                 width: fit-content;
                 padding: 10px;
             }
-            
+
             #pic{
                 width: 20%;
                 height: auto;
                 align-items: center;
                 padding: 10px;
             }
+           
         </style>
     </head>
     <body>
@@ -48,10 +53,11 @@
             <img id="pic" src="side.png">
             <img id="pic" src="sample.png">
         </div>
-        <div>
-            <!--
-                
-            -->
+        <div id="pannel">
+            <div id="lable">
+                <a id="names">Names(last==latest): </a>
+            </div>
+        <embed src="namedata.txt">
         </div>
     </body>
 </html>

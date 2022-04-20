@@ -35,9 +35,9 @@ def front(arr,old):
         #body
         front[8:20,4:12] = arr[20:32,20:28]
         #left arm
-        front[8:20,0:4] = arr[52:64,36:40]
+        front[8:20,0:4] = arr[20:32,44:48]
         #right arm
-        front[8:20,12:16] = arr[20:32,44:48]
+        front[8:20,12:16] = arr[52:64,36:40]
         #left leg
         front[20:32,4:8] = arr[20:32,4:8]
         #right leg
@@ -67,7 +67,8 @@ def side(arr,old):
         #left leg
         side[20:32,6:10] = arr[20:32,0:4]
         #left arm
-        side[8:20,6:10] = arr[52:64,32:36]
+        #side[8:20,6:10] = arr[52:64,32:36]
+        side[8:20,6:10] = arr[52:64,40:44]
         f=Image.fromarray(side)
         f.save("side.png")
 
@@ -82,12 +83,11 @@ def upscale(file,x):
     f=Image.fromarray(big)
     f.save(file)
 
-
             
 
 
 
-Username = input("Who do you want to steal the skin of?: ")
+Username = input("What account do you want information on?: ")
 UUID = requests.request("GET","https://api.mojang.com/users/profiles/minecraft/"+Username)
 UUID=UUID.json()["id"]
 print(UUID)
@@ -116,9 +116,12 @@ upscale("sample.png",10)
 upscale("front.png",10)
 upscale("side.png",10)
 
+file = open("namedata.txt", "a")
+file.truncate(0)
 name_history=requests.request("GET", "https://api.mojang.com/user/profiles/"+UUID+"/names").json()
 for i in name_history:
-    print(i["name"])
+    file.write(i["name"]+"\n")
+file.close()
 
 webbrowser.open("index.html")
 
